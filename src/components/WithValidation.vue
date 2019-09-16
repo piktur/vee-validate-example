@@ -3,9 +3,9 @@
     rules="required|email"
     name="email"
     mode="lazy"
-    slim
+    :slim="false"
     vid="email">
-    <template v-slot="{ ariaInput, errors }">
+    <template v-slot:default="{ ariaInput, errors }">
       <VTextField
         v-bind="ariaInput"
         v-model.lazy="form.email"

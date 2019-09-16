@@ -25,8 +25,7 @@ describe('WithValidation.vue', () => {
 
   it('displays validation message', async () => {
     input.setValue('invalid')
-    input.trigger('change') // either event should trigger validation
-    input.trigger('blur')
+    input.trigger('change')
 
     await flushPromises()
     await wrapper.vm.$nextTick()
