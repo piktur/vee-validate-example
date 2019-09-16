@@ -10,13 +10,13 @@ module.exports = {
   silent: false,
   verbose: true,
   transform: {
-    '^.+\\.vue$': 'vue-jest',
     '.*vuetify.*\\.js$': require.resolve('babel-jest'),
+    '^.+\\.vue$': 'vue-jest',
     '.*\\.(j|t)s$': require.resolve('ts-jest'),
-    '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
+    '.+\\.(css|styl|less|sass|scss|svg|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub'
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(vuetify|vee-validate)/)',
+    'node_modules/(?!(vuetify|vee-validate)/)'
   ],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1'

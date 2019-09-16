@@ -1,6 +1,8 @@
 import { mount } from '@vue/test-utils'
 import flushPromises from 'flush-promises'
 import WithValidation from '@/components/WithValidation.vue'
+import WithSimpleValidation from '@/components/WithSimpleValidation.vue'
+import '@/main'
 
 describe('WithValidation.vue', () => {
   const wrapper = mount(WithValidation)
@@ -12,7 +14,6 @@ describe('WithValidation.vue', () => {
   const componentOptions = vnode.componentOptions
   // @ts-ignore
   const listeners = vnode.componentOptions.listeners
-
 
   it('applies listeners correctly', () => {
     expect(listeners).toMatchObject({
@@ -31,5 +32,20 @@ describe('WithValidation.vue', () => {
     await wrapper.vm.$nextTick()
 
     expect(textField.find('.v-messages__message').text()).toMatchSnapshot()
+  })
+})
+
+describe('WithSimpleValidation.vue', () => {
+  const wrapper = mount(WithSimpleValidation)
+  const input = wrapper.find('input')
+
+  it('displays validation message', async () => {
+    input.setValue('invalid')
+    input.trigger('change')
+
+    await flushPromises()
+    await wrapper.vm.$nextTick()
+
+    expect(wrapper.find('.errors').text()).toMatchSnapshot()
   })
 })

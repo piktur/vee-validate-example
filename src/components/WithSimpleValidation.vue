@@ -6,24 +6,23 @@
     slim
     vid="email">
     <template v-slot="{ ariaInput, errors }">
-      <VTextField
-        v-bind="ariaInput"
-        v-model.lazy="form.email"
-        :error-messages="errors"
-        label="Email"
-        hint="required|email"
-        name="email" />
+      <div>
+        <input
+          v-bind="ariaInput"
+          v-model.lazy="form.email"
+          label="Email"
+          name="emailSimple" />
+        <span class="errors" style="color: red;">{{ errors.join(', ') }}</span>
+      </div>
     </template>
   </ValidationProvider>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
-import { VTextField } from 'vuetify/lib'
 
 export default Vue.extend({
   name: 'WithValidation',
-  components: { VTextField },
   data: () => ({
     form: {
       email: ''
